@@ -1,0 +1,1 @@
+# qsd-ada-logica
