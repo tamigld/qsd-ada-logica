@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto e Estoque</title>
+    <script defer src="./script.js"></script>
+    <style>
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        button{
+            cursor: pointer;
+            transition: ease all 0.2s;
+            background-color: crimson;
+            color: aliceblue;
+            padding: 10px 20px;
+            border-radius: 40px;
+            border: none;
+        }
+
+        button:hover{
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+    <button onclick=adicionarProduto()>Adicionar produto</button>
+    <button onclick=venderProduto()>Vender produto</button>
+    <button onclick=exibirEstoque()>Exibir estoque</button>
+</body>
+</html>
