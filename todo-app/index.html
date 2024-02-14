@@ -8,12 +8,52 @@
     <script defer src="./script.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="./img/favicon-tf.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/121ad576a7.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <header>
-        <p>TaskFlow</p>
-    </header>
+    <!-- MODAL -->
+    <section id="modalGroup">
+        <div id="modal">
+            <i onclick=closeModal() class="closeIcon fa-solid fa-circle-xmark"></i>
+            <div>
+                <label for="newTitle">Novo título:</label>
+                <input class="inputText" type="text" name="newTitle" id="newTitle" placeholder="Novo título *" required>
+            </div>
+
+            <div class="formGroup" style="user-select: none;">
+                <p>Nova prioridade</p>
+                <div class="p-div" style="display: flex; justify-content: space-between;">
+                    <input class="p-low" type="radio" name="newPriority" id="newLow" value="Baixa" required>
+                    <label class="btn-p p-low" for="newLow">Baixa</label>
+
+                    <input class="p-medium" type="radio" name="newPriority" id="newMedium" value="Média" required>
+                    <label class="btn-p p-medium" for="newMedium">Média</label>
+
+                    <input class="p-high" type="radio" name="newPriority" id="newHigh" value="Alta" required>
+                    <label class="btn-p p-high" for="newHigh">Alta</label>
+                </div>
+            </div>
+
+            <div class="formGroup">
+                <textarea class="inputText" name="newDescricao" id="newDescricao" cols="30" rows="10"
+                    placeholder="Nova descrição"></textarea>
+                <label for="newDescricao">Nova descrição</label>
+            </div>
+
+            <button onclick=atualizar()  class="btn-def" type="button">Salvar</button>
+        </div>
+    </section>
+
+    <section id="modalGroup-descricao">
+        <div id="modal-descricao">
+            <i onclick=closeModal() class="closeIcon fa-solid fa-circle-xmark"></i>
+            <div id="textoDescricao">
+
+            </div>
+        </div>
+    </section>
+
     <main>
         <div class="card greetings" style="background-color: var(--azul); text-align: center;">
             <p style="color: var(--branco);">Bem vindo ao <span
@@ -51,24 +91,20 @@
             <div class="container-list">
                 <div class="headerTasks card"">
                     <h2>Lista de tarefas</h2>
-                    <label for="search" style="position: relative;">
-                    <input class="inputText" type="search" name="search" id="search" placeholder="Pesquisar...">
-                    <span class="label-search">Pesquisar:</span>
-                    <img class="img-search" src="./img/search.png" alt="">
                     </label>
                 </div>
                 <section class="table-container card">
-                    <table id="message">
+                    <table>
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Título</th>
                                 <th>Prioridade</th>
+                                <th>Descrição</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody id="tbody">
-
+                            <td id="message" colspan="4"></td>
                         </tbody>
                     </table>
                 </section>
