@@ -64,11 +64,10 @@ function listarTarefas() {
             return (
                 `<td id="message" colspan="4"></td>
                 <tr>
-                        <td>${tarefa.titulo}</td>
+                        <td class="td-title">${tarefa.titulo}</td>
                         <td>${tarefa.prioridade}</td>
-                        <td>${tarefa.descricao}</td>
+                        <td class="td-desc">${tarefa.descricao}</td>
                         <td class="td-action">
-                            <button onclick=mostrarDescricao(this.id) class="btn-def" id="${tarefa.id}">Descrição</button>
                             <button onclick=editarTarefa(this.id) class="btn-def btn-edit" id="${tarefa.id}">Editar</button>
                             <button onclick=deletarTarefa(this.id) class="btn-def btn-del" id="${tarefa.id}">Excluir</button>
                         </td>
@@ -95,11 +94,8 @@ function deletarTarefa(id) {
 
 
 function editarTarefa(id) {
-    
-
     const retornarId = () => {
         const idRetornado = id
-        console.log(idRetornado)
     
         let modal = document.getElementById("modalGroup")
         modal.style.visibility = 'visible'
@@ -108,8 +104,15 @@ function editarTarefa(id) {
         return idRetornado
     }
 
-    let idBosta = retornarId()
+    let idRetornado = retornarId(id)
 
+    let botaoTeste = document.getElementById('button-modal')
+    botaoTeste.innerHTML = `<button onclick=atualizarTarefa(${idRetornado}) class="btn-def" type="button">Salvar</button>`
+
+    // listarTarefas()
+}
+
+function atualizarTarefa(id) {
     function createOutput() {
         var prioridade;
         if (document.getElementById('newLow').checked == true) {
@@ -122,28 +125,20 @@ function editarTarefa(id) {
         return prioridade
     }
 
-    let newTitle = document.getElementById("newTitle").value
-    let newDescricao = document.getElementById("newDescricao").value
+    let newTitle = document.getElementById('newTitle').value
+    let newDescricao = document.getElementById('newDescricao').value
     let newPrioridade = createOutput()
 
     listaTarefas.find(function (tarefa) {
-        if (tarefa.id === idBosta) {
-            tarefa.titulo = "Karthik";
-            tarefa.descricao = "Karthik";
-            tarefa.prioridade = "Karthik";
+        if (tarefa.id == id) {
+            tarefa.titulo = newTitle;
+            tarefa.descricao = newDescricao;
+            tarefa.prioridade = newPrioridade;
         }
     });
 
-
-    // listaTarefas[0].titulo = newTitle;
-    // listaTarefas[0].descricao = newDescricao;
-    // listaTarefas[0].prioridade = newPrioridade;
-
     listarTarefas()
-}
-
-function atualizar() {
-    console.log(listaTarefas)
+    closeModal()
 }
 
 function closeModal() {
@@ -153,4 +148,18 @@ function closeModal() {
     modal.style.opacity = '0'
     modalDescricao.style.visibility = 'hidden'
     modalDescricao.style.opacity = '0'
+
+    let titleInput = document.getElementById("newTitle")
+    titleInput.value = ""
+    let descInput = document.getElementById("newDescricao")
+    descInput.value = ""
+
+    let lowInputChecked = document.getElementById('newLow').checked
+    let mediumInputChecked = document.getElementById('newMedium').checked
+    let highInputChecked = document.getElementById('newHigh').checked
+    
+    let escolhas = document.getElementsByName('newPriority')
+    for(i = 0; i < escolhas.length; i++){
+        escolhas[i].checked = false
+    }
 }

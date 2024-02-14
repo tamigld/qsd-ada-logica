@@ -264,8 +264,10 @@ th {
     border-bottom: 1px solid #c2e8f8;
 }
 
-.td-action {
-    width: 300px;
+.td-title,
+.td-desc{
+    max-width: 120px;
+    word-wrap: break-word;
 }
 
 /* animations */
