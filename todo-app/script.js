@@ -51,6 +51,15 @@ function adicionarTarefa() {
 
         listaTarefas.push(tarefa)
         listarTarefas()
+
+        let titleInput = document.getElementById("title")
+        titleInput.value = ""
+        let descInput = document.getElementById("descricao")
+        descInput.value = ""
+        let escolhas = document.getElementsByName('priority')
+        for (i = 0; i < escolhas.length; i++) {
+            escolhas[i].checked = false
+        }
     }
 }
 
