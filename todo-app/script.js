@@ -52,7 +52,6 @@ function adicionarTarefa() {
         listaTarefas.push(tarefa)
         listarTarefas()
     }
-
 }
 
 function listarTarefas() {
@@ -65,7 +64,7 @@ function listarTarefas() {
                 `<td id="message" colspan="4"></td>
                 <tr>
                         <td class="td-title">${tarefa.titulo}</td>
-                        <td>${tarefa.prioridade}</td>
+                        <td class="td-prio">${tarefa.prioridade}</td>
                         <td class="td-desc">${tarefa.descricao}</td>
                         <td class="td-action">
                             <button onclick=editarTarefa(this.id) class="btn-def btn-edit" id="${tarefa.id}">Editar</button>
@@ -76,7 +75,7 @@ function listarTarefas() {
         }).join('')
     } else {
         // se o a lista de tarefas  for igual a 0, a mensagem é exibida:
-        document.getElementById('message').innerText = "Não há tarefas a serem exibidas!"
+        document.getElementById('message').innerText = "Não há tarefas a serem exibidas. Crie alguma! 😜"
     }
 }
 
@@ -94,22 +93,12 @@ function deletarTarefa(id) {
 
 
 function editarTarefa(id) {
-    const retornarId = () => {
-        const idRetornado = id
-    
-        let modal = document.getElementById("modalGroup")
-        modal.style.visibility = 'visible'
-        modal.style.opacity = '1'
-    
-        return idRetornado
-    }
-
-    let idRetornado = retornarId(id)
+    let modal = document.getElementById("modalGroup")
+    modal.style.visibility = 'visible'
+    modal.style.opacity = '1'
 
     let botaoTeste = document.getElementById('button-modal')
-    botaoTeste.innerHTML = `<button onclick=atualizarTarefa(${idRetornado}) class="btn-def" type="button">Salvar</button>`
-
-    // listarTarefas()
+    botaoTeste.innerHTML = `<button onclick=atualizarTarefa(${id}) class="btn-def" type="button">Salvar</button>`
 }
 
 function atualizarTarefa(id) {
@@ -129,13 +118,29 @@ function atualizarTarefa(id) {
     let newDescricao = document.getElementById('newDescricao').value
     let newPrioridade = createOutput()
 
-    listaTarefas.find(function (tarefa) {
-        if (tarefa.id == id) {
-            tarefa.titulo = newTitle;
-            tarefa.descricao = newDescricao;
-            tarefa.prioridade = newPrioridade;
-        }
-    });
+    if (newTitle) {
+        listaTarefas.find(function (tarefa) {
+            if (tarefa.id == id) {
+                tarefa.titulo = newTitle;
+            }
+        });
+    }
+
+    if (newDescricao) {
+        listaTarefas.find(function (tarefa) {
+            if (tarefa.id == id) {
+                tarefa.descricao = newDescricao;
+            }
+        });
+    }
+
+    if (newPrioridade) {
+        listaTarefas.find(function (tarefa) {
+            if (tarefa.id == id) {
+                tarefa.prioridade = newPrioridade;
+            }
+        });
+    }
 
     listarTarefas()
     closeModal()
@@ -149,17 +154,13 @@ function closeModal() {
     modalDescricao.style.visibility = 'hidden'
     modalDescricao.style.opacity = '0'
 
+    // esvaziar inputs do modal ao fechar o mesmo
     let titleInput = document.getElementById("newTitle")
     titleInput.value = ""
     let descInput = document.getElementById("newDescricao")
     descInput.value = ""
-
-    let lowInputChecked = document.getElementById('newLow').checked
-    let mediumInputChecked = document.getElementById('newMedium').checked
-    let highInputChecked = document.getElementById('newHigh').checked
-    
     let escolhas = document.getElementsByName('newPriority')
-    for(i = 0; i < escolhas.length; i++){
+    for (i = 0; i < escolhas.length; i++) {
         escolhas[i].checked = false
     }
 }

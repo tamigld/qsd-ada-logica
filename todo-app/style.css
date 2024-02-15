@@ -13,7 +13,7 @@
     --montserratS: 'Montserrat Subrayada', 'sans-serif';
     --branco: #fff;
     --preto: #000;
-    --azul: #7CBEDB;
+    --rosa: #ff6bc1;
     --platinum: #E4E4E4;
     --verde: #48FF70;
     --amarelo: #FFC24C;
@@ -30,7 +30,7 @@ header {
     align-items: center;
     justify-content: center;
     padding: 10px 60px;
-    background-color: var(--azul);
+    background-color: var(--rosa);
     border-top: 1px solid var(--branco);
     backdrop-filter: blur(5px);
 }
@@ -75,7 +75,7 @@ main {
 .btn-def {
     transition: ease all 0.2s;
     cursor: pointer;
-    background-color: var(--azul);
+    background-color: var(--rosa);
     color: var(--branco);
     border: none;
     padding: 8px 18px;
@@ -129,7 +129,7 @@ input:focus {
     color: var(--preto);
     border: none;
     background-color: transparent;
-    border-bottom: 1px solid var(--azul);
+    border-bottom: 1px solid var(--rosa);
 
     padding: 5px 10px;
 }
@@ -247,7 +247,7 @@ input[type="radio"] {
 /* css table */
 .table-container {
     border-radius: 25px 0 0 25px;
-    border: solid 1px var(--azul);
+    border: solid 1px var(--rosa);
     height: 65vh;
     overflow-y: scroll;
 }
@@ -261,7 +261,7 @@ tr,
 td,
 th {
     padding: 5px;
-    border-bottom: 1px solid #c2e8f8;
+    border-bottom: 1px solid rgba(219, 124, 203, 0.2);
 }
 
 .td-title,
