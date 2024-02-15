@@ -266,7 +266,8 @@ th {
 
 .td-title,
 .td-desc{
-    max-width: 120px;
+    max-width: 250px;
+    width: 200px;
     word-wrap: break-word;
 }
 
