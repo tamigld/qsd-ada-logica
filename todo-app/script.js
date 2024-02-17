@@ -171,18 +171,29 @@ function listarTarefas() {
     }
 }
 
+
 function updateStatus(id) {
+    const showModal = () => {
+        let modal = document.getElementById('modal-group-task')
+        modal.style.visibility = 'visible'
+        modal.style.opacity = '1'
+    }
+    
     let checkbox = document.querySelector(`input[name="name-task-${id}"]`)
     let taskStatus = document.querySelector(`span.text-checkbox-${id}`)
-
+    
     if (checkbox.checked) {
-        listaTarefas.find(function (tarefa) {
-            if (tarefa.id == id) { 
-                tarefa.status = true;
-                document.getElementById(`task-row-${tarefa.id}`).style.opacity = '0.2'
-                taskStatus.innerText = 'Feito!'
-            }
-        });
+        setTimeout(() => {
+            showModal()
+            listaTarefas.find(function (tarefa) {
+                if (tarefa.id == id) { 
+                    tarefa.status = true;
+                    document.getElementById(`task-row-${tarefa.id}`).style.opacity = '0.2'
+                    taskStatus.innerText = 'Feito!'
+                    document.getElementById('btn-delete-task').addEventListener('click', () => {deletarTarefa})
+                }
+            });
+        }, 600);
     } else {
         listaTarefas.find(function (tarefa) {
             if (tarefa.id == id) {
@@ -193,7 +204,6 @@ function updateStatus(id) {
         });
     }
 }
-
 
 function deletarTarefa(id) {
     let idAchado = id
@@ -263,12 +273,12 @@ function atualizarTarefa(id) {
 
 function closeModal() {
     let modal = document.getElementById("modalGroup")
-    let modalDescricao = document.getElementById("modalGroup-descricao")
+    let modalCompleteTask = document.getElementById('modal-group-task')
     
+    modalCompleteTask.style.visibility = 'hidden'
+    modalCompleteTask.style.opacity = '0'
     modal.style.visibility = 'hidden'
     modal.style.opacity = '0'
-    modalDescricao.style.visibility = 'hidden'
-    modalDescricao.style.opacity = '0'
 
     // esvaziar inputs do modal ao fechar o mesmo
     document.getElementById("newTitle").value = ""

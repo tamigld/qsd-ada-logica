@@ -19,8 +19,8 @@
             <h3>Parabéns! Você concluiu uma tarefa da sua lista.</h3>
             <p>Deseja exclui-la?</p>
             <div>
-                <button class="btn-def" type="button">Sim! Tire da minha lista.</button>
-                <button class="btn-def" style="background-color: var(--branco); color: var(--preto);" type="button">Não, vou excluir depois.</button>
+                <button class="btn-def" id="btn-delete-task" type="button">Sim! Tire da minha lista.</button>
+                <button onclick=closeModal() class="btn-def" style="background-color: var(--branco); color: var(--preto);" type="button">Não, vou excluir depois.</button>
             </div>
         </div>
     </section>
@@ -56,15 +56,6 @@
 
             <div id="button-modal">
                 <!-- <button onclick=atualizarTarefa() class="btn-def" type="button">Salvar</button> -->
-            </div>
-        </div>
-    </section>
-
-    <section id="modalGroup-descricao">
-        <div id="modal-descricao">
-            <i onclick=closeModal() class="closeIcon fa-solid fa-circle-xmark"></i>
-            <div id="textoDescricao">
-
             </div>
         </div>
     </section>
